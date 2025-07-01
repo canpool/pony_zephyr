@@ -1,0 +1,20 @@
+{
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "C_Cpp.errorSquiggles": "disabled",
+  "C_Cpp.autoAddFileAssociations": false,
+  "files.associations": {
+    "Kconfig": "ruby",
+    "Kconfig.*": "ruby",
+    "*_defconfig": "makefile"
+  },
+  "search.useIgnoreFiles": false,
+  "search.exclude": {
+    "**/out": true
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  }
+}
