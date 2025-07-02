@@ -10,4 +10,5 @@ flash: 2048
 supported:
   - gpio
   - uart
+  - i2c
 vendor: canpool

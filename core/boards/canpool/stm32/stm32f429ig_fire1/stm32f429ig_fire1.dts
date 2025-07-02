@@ -89,3 +89,17 @@
 	current-speed = <115200>;
 	status = "okay";
 };
+
+&i2c1 {
+	pinctrl-0 = <&i2c1_scl_pb6 &i2c1_sda_pb7>;
+	pinctrl-names = "default";
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>;
+
+	mpu6050@68 {
+		compatible = "invensense,mpu6050";
+		reg = <0x68>;
+		status = "disabled";
+		int-gpios = <&gpioi 1 GPIO_ACTIVE_HIGH>;
+	};
+};
