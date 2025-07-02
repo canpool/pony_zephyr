@@ -16,6 +16,7 @@
 	aliases {
 		led0 = &red_led;
 		sw0 = &user_button;
+		spi-flash0 = &w25q32fv;
 	};
 
 	chosen {
@@ -23,6 +24,7 @@
 		zephyr,shell-uart = &usart1;
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
+		zephyr,flash-controller = &w25q32fv;
 	};
 
 	leds {
@@ -79,4 +81,33 @@
 	pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
 	current-speed = <115200>;
 	status = "okay";
+};
+
+&quadspi {
+	pinctrl-names = "default";
+	pinctrl-0 = <&quadspi_clk_pb2 &quadspi_bk1_ncs_pb10
+		     &quadspi_bk1_io0_pd11 &quadspi_bk1_io1_pd12
+		     &quadspi_bk1_io2_pe2 &quadspi_bk1_io3_pd13>;
+	status = "okay";
+
+	/* Sector erase 64KB uniform granularity */
+	/* Subsector erase 4KB, 32KB granularity */
+	w25q32fv: qspi-nor-flash@90000000 {
+		compatible = "st,stm32-qspi-nor";
+		reg = <0x90000000 DT_SIZE_M(4)>;
+		qspi-max-frequency = <80000000>;
+		spi-bus-width = <1>;
+		status = "okay";
+
+		partitions {
+			compatible = "fixed-partitions";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			storage_partition: partition@0 {
+				label = "storage";
+				reg = <0x0 DT_SIZE_M(4)>;
+			};
+		};
+	};
 };
