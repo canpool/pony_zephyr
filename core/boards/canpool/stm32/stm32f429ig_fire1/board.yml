@@ -1,0 +1,6 @@
+board:
+  name: stm32f429ig_fire1
+  full_name: STM32F429IG fire tiaozhanzhe V1
+  vendor: canpool
+  socs:
+    - name: stm32f429xx
