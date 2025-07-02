@@ -103,3 +103,19 @@
 		int-gpios = <&gpioi 1 GPIO_ACTIVE_HIGH>;
 	};
 };
+
+&spi5 {
+	pinctrl-0 = <&spi5_nss_pf6 &spi5_sck_pf7
+		     &spi5_miso_pf8 &spi5_mosi_pf9>;
+	pinctrl-names = "default";
+	status = "disabled";
+
+	nor_flash: w25q128fvsg@0 {
+		compatible ="jedec,spi-nor";
+		size = <0x1000000>;
+		reg = <0>;
+		spi-max-frequency = <4000000>;
+		status = "disabled";
+		jedec-id = [ef 40 18];
+	};
+};

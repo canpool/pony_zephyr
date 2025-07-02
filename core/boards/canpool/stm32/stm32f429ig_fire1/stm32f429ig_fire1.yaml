@@ -11,4 +11,5 @@ supported:
   - gpio
   - uart
   - i2c
+  - spi
 vendor: canpool
