@@ -65,6 +65,16 @@
 	status = "okay";
 };
 
+&pll3 {
+	div-m = <5>;
+	mul-n = <192>;
+	div-p = <2>;
+	div-q = <20>;
+	div-r = <99>;
+	clocks = <&clk_hse>;
+	status = "okay";
+};
+
 &rcc {
 	clocks = <&pll>;
 	clock-frequency = <DT_FREQ_M(480)>;
@@ -80,6 +90,17 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
 	current-speed = <115200>;
+	status = "okay";
+};
+
+&sdmmc1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&sdmmc1_d0_pc8 &sdmmc1_d1_pc9
+		     &sdmmc1_d2_pc10 &sdmmc1_d3_pc11
+		     &sdmmc1_ck_pc12 &sdmmc1_cmd_pd2>;
+	cd-gpios = <&gpioa 8 GPIO_ACTIVE_LOW>;
+	clocks = <&rcc STM32_CLOCK(AHB3, 16U)>,
+			<&rcc STM32_SRC_PLL3_Q SDMMC_SEL(0)>;
 	status = "okay";
 };
 
