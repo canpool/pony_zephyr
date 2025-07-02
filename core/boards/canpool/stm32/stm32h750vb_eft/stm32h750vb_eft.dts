@@ -16,7 +16,7 @@
 	aliases {
 		led0 = &red_led;
 		sw0 = &user_button;
-		spi-flash0 = &w25q32fv;
+		spi-flash0 = &w25q32fvsig;
 	};
 
 	chosen {
@@ -24,7 +24,7 @@
 		zephyr,shell-uart = &usart1;
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
-		zephyr,flash-controller = &w25q32fv;
+		zephyr,flash-controller = &w25q32fvsig;
 	};
 
 	leds {
@@ -92,7 +92,7 @@
 
 	/* Sector erase 64KB uniform granularity */
 	/* Subsector erase 4KB, 32KB granularity */
-	w25q32fv: qspi-nor-flash@90000000 {
+	w25q32fvsig: qspi-nor-flash@90000000 {
 		compatible = "st,stm32-qspi-nor";
 		reg = <0x90000000 DT_SIZE_M(4)>;
 		qspi-max-frequency = <80000000>;
