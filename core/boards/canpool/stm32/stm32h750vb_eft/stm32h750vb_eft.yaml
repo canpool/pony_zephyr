@@ -1,0 +1,13 @@
+identifier: stm32h750vb_eft
+name: STM32H750VB-EFT
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+ram: 1024
+flash: 128
+supported:
+  - gpio
+  - uart
+vendor: canpool
