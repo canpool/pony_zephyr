@@ -168,5 +168,6 @@ zephyr_udc0: &usbotg_fs {
 		partition = <&storage_partition>;
 		disk-name = "NAND";
 		cache-size = <4096>;
+		status = "disabled";
 	};
 };
