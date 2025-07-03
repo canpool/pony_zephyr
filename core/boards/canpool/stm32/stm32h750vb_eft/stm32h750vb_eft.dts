@@ -56,6 +56,10 @@
 	status = "okay";
 };
 
+&clk_hsi48 {
+	status = "okay";
+};
+
 &pll {
 	div-m = <5>;
 	mul-n = <192>;
@@ -149,5 +153,20 @@
 				reg = <0x0 DT_SIZE_M(4)>;
 			};
 		};
+	};
+};
+
+zephyr_udc0: &usbotg_fs {
+	pinctrl-0 = <&usb_otg_fs_dm_pa11 &usb_otg_fs_dp_pa12>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
+/ {
+	msc_disk0 {
+		compatible = "zephyr,flash-disk";
+		partition = <&storage_partition>;
+		disk-name = "NAND";
+		cache-size = <4096>;
 	};
 };
