@@ -16,6 +16,7 @@
 		led0 = &blue_led;
 		sw0 = &user_button1;
 		sram-ext = &sdram2;
+		eeprom-0 = &eeprom0;
 	};
 
 	chosen {
@@ -109,6 +110,16 @@
 		reg = <0x68>;
 		status = "disabled";
 		int-gpios = <&gpioi 1 GPIO_ACTIVE_HIGH>;
+	};
+
+	eeprom0: at24c02@50 {
+		compatible = "atmel,at24";
+		reg = <0x50>;
+		size = <256>;
+		pagesize = <8>;
+		address-width = <8>;
+		timeout = <5>;
+		status = "okay";
 	};
 };
 
