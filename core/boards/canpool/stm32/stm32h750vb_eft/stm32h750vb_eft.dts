@@ -17,6 +17,7 @@
 		led0 = &red_led;
 		sw0 = &user_button;
 		spi-flash0 = &w25q32fvsig;
+		eeprom-0 = &eeprom0;
 	};
 
 	chosen {
@@ -91,6 +92,24 @@
 	pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
 	current-speed = <115200>;
 	status = "okay";
+};
+
+&i2c1 {
+	pinctrl-0 = <&i2c1_scl_pb6 &i2c1_sda_pb7>;
+	pinctrl-names = "default";
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>;
+
+	/* slave address is (0x50 << 1) */
+	eeprom0: 24c02n@50 {
+		compatible = "atmel,at24";
+		reg = <0x50>;
+		status = "okay";
+		size = <256>;
+		pagesize = <8>;
+		address-width = <8>;
+		timeout = <5>;
+	};
 };
 
 &sdmmc1 {
