@@ -76,17 +76,17 @@
 };
 
 &pll {
-	div-m = <15>;
-	mul-n = <216>;
+	div-m = <25>;
+	mul-n = <336>;
 	div-p = <2>;
-	div-q = <8>;
+	div-q = <7>;
 	clocks = <&clk_hse>;
 	status = "okay";
 };
 
 &rcc {
 	clocks = <&pll>;
-	clock-frequency = <DT_FREQ_M(180)>;
+	clock-frequency = <DT_FREQ_M(168)>;
 	ahb-prescaler = <1>;
 	apb1-prescaler = <4>;
 	apb2-prescaler = <2>;
@@ -184,5 +184,11 @@
 	pinctrl-0 = <&sdio_d0_pc8 &sdio_d1_pc9
 		     &sdio_d2_pc10 &sdio_d3_pc11
 		     &sdio_ck_pc12 &sdio_cmd_pd2>;
+	status = "okay";
+};
+
+zephyr_udc0: &usbotg_hs {
+	pinctrl-0 = <&usb_otg_hs_dm_pb14 &usb_otg_hs_dp_pb15 &usb_otg_hs_id_pb12>;
+	pinctrl-names = "default";
 	status = "okay";
 };
