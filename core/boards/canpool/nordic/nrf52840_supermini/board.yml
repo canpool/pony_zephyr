@@ -1,0 +1,6 @@
+board:
+  name: nrf52840_supermini
+  full_name: nRF52840 SuperMini
+  vendor: canpool
+  socs:
+    - name: nrf52840

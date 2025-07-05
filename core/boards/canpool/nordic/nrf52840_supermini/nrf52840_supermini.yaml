@@ -1,0 +1,13 @@
+identifier: nrf52840_supermini
+name: nRF52840 SuperMini
+type: mcu
+arch: arm
+ram: 256
+flash: 1024
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - gpio
+  - uart
+vendor: canpool
