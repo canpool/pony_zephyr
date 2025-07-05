@@ -124,6 +124,7 @@
 	cd-gpios = <&gpioa 8 GPIO_ACTIVE_LOW>;
 	clocks = <&rcc STM32_CLOCK(AHB3, 16U)>,
 			<&rcc STM32_SRC_PLL3_Q SDMMC_SEL(0)>;
+	disk-name = "SD";
 	status = "okay";
 };
 
@@ -139,6 +140,7 @@
 	w25q32fvsig: qspi-nor-flash@90000000 {
 		compatible = "st,stm32-qspi-nor";
 		reg = <0x90000000 DT_SIZE_M(4)>;
+		size = <DT_SIZE_M(32)>; /* 32 Mbits */
 		qspi-max-frequency = <80000000>;
 		spi-bus-width = <1>;
 		status = "okay";
