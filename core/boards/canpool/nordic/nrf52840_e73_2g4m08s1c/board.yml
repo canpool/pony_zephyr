@@ -1,0 +1,6 @@
+board:
+  name: nrf52840_e73_2g4m08s1c
+  full_name: nRF52840 E73-2G4M08S1C
+  vendor: canpool
+  socs:
+    - name: nrf52840

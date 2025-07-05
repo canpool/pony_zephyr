@@ -1,0 +1,8 @@
+# nRF52840 E73-2G4M08S1C board configuration
+
+# Copyright (c) 2025 maminjie <canpool@163.com>
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_NRF52840_E73_2G4M08S1C
+
+endif # BOARD_NRF52840_E73_2G4M08S1C

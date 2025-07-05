@@ -1,0 +1,13 @@
+identifier: nrf52840_e73_2g4m08s1c
+name: nRF52840-E73-2G4M08S1C
+type: mcu
+arch: arm
+ram: 256
+flash: 1024
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - gpio
+  - uart
+vendor: canpool
