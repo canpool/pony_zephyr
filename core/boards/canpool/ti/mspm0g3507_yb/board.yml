@@ -1,0 +1,6 @@
+board:
+  name: mspm0g3507_yb
+  full_name: MSPM0G3507 YB-MSA03-V1.0
+  vendor: canpool
+  socs:
+    - name: mspm0g3507

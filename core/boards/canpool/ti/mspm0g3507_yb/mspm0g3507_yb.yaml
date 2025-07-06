@@ -1,0 +1,13 @@
+identifier: mspm0g3507_yb
+name: MSPM0G3507 YB-MSA03-V1.0
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+ram: 32
+flash: 128
+supported:
+  - uart
+  - gpio
+vendor: canpool
