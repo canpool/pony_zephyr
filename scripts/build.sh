@@ -29,11 +29,16 @@ output() {
     local build_dir=$(realpath "$BUILD_DIR")
     mkdir -p $OUT_DIR
     local out_dir=$(realpath "$OUT_DIR")
-    cp $build_dir/zephyr/zephyr.{bin,dts,elf,map} $out_dir
+    cp $build_dir/zephyr/zephyr.{dts,elf,map} $out_dir
     if [ -f "$build_dir/zephyr/zephyr.hex" ]; then
         cp $build_dir/zephyr/zephyr.hex $out_dir
     else
         rm -f $out_dir/zephyr.hex
+    fi
+    if [ -f "$build_dir/zephyr/zephyr.bin" ]; then
+        cp $build_dir/zephyr/zephyr.bin $out_dir
+    else
+        rm -f $out_dir/zephyr.bin
     fi
     cp $build_dir/zephyr/.config $out_dir
     cp $build_dir/Kconfig/Kconfig.dts $out_dir
