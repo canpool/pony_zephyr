@@ -5,7 +5,7 @@
 CUR_DIR=$(pwd)
 OUT_DIR=$CUR_DIR/out
 BUILD_DIR=""
-filtered_args=()
+BUILD_ARGS=()
 
 usage() {
 printf "wrapper of west build
@@ -59,7 +59,7 @@ filter_args() {
     local has_value="$2"    # such as: "y" or "n"
     shift 2
 
-    filtered_args=()
+    BUILD_ARGS=()
     local arg skip_next=false
 
     for arg in "$@"; do
@@ -73,7 +73,7 @@ filter_args() {
             continue
         fi
 
-        filtered_args+=("$arg")
+        BUILD_ARGS+=("$arg")
     done
 }
 
@@ -101,7 +101,7 @@ main() {
 
     filter_args "-q" "y" "$@"
 
-    west build "${filtered_args[@]}"
+    west build "${BUILD_ARGS[@]}"
     ret=$?
     if [ $ret -eq 0 ]; then
         output
