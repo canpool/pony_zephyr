@@ -5,9 +5,21 @@
 CUR_DIR=$(pwd)
 OUT_DIR=$CUR_DIR/out
 BUILD_DIR=""
+filtered_args=()
 
 usage() {
-    west build -h | sed 's|usage: west build|usage: bash build.sh|g'
+printf "wrapper of west build
+
+usage:
+    bash build.sh [-h] [-q OUT_DIR] [...]
+
+optional arguments:
+    -q OUT_DIR     output directory to create or use
+    -h             show the help message and exit
+
+other argmuments:
+    [...]          west build -h for more details
+\n"
 }
 
 output() {
@@ -16,27 +28,56 @@ output() {
     fi
     local build_dir=$(realpath "$BUILD_DIR")
     mkdir -p $OUT_DIR
-    cp $build_dir/zephyr/zephyr.{bin,dts,elf,map} $OUT_DIR
+    local out_dir=$(realpath "$OUT_DIR")
+    cp $build_dir/zephyr/zephyr.{bin,dts,elf,map} $out_dir
     if [ -f "$build_dir/zephyr/zephyr.hex" ]; then
-        cp $build_dir/zephyr/zephyr.hex $OUT_DIR
+        cp $build_dir/zephyr/zephyr.hex $out_dir
     else
-        rm -f $OUT_DIR/zephyr.hex
+        rm -f $out_dir/zephyr.hex
     fi
-    cp $build_dir/zephyr/.config $OUT_DIR
-    cp $build_dir/Kconfig/Kconfig.dts $OUT_DIR
-    cp $build_dir/zephyr/include/generated/zephyr/autoconf.h $OUT_DIR
-    cp $build_dir/zephyr/include/generated/zephyr/devicetree_generated.h $OUT_DIR
+    cp $build_dir/zephyr/.config $out_dir
+    cp $build_dir/Kconfig/Kconfig.dts $out_dir
+    cp $build_dir/zephyr/include/generated/zephyr/autoconf.h $out_dir
+    cp $build_dir/zephyr/include/generated/zephyr/devicetree_generated.h $out_dir
 
-    echo "Success, outputing files to $OUT_DIR:"
-    if [ -f "$OUT_DIR/zephyr.hex" ]; then
-        size $OUT_DIR/zephyr.{elf,hex}
+    echo "Success, outputing files to $out_dir:"
+    if [ -f "$out_dir/zephyr.hex" ]; then
+        size $out_dir/zephyr.{elf,hex}
     else
-        size $OUT_DIR/zephyr.elf
+        size $out_dir/zephyr.elf
     fi
 }
 
+# filter_args option has_value "$@"
+filter_args() {
+    local option="$1"       # such as: "-q"
+    local has_value="$2"    # such as: "y" or "n"
+    shift 2
+
+    filtered_args=()
+    local arg skip_next=false
+
+    for arg in "$@"; do
+        if $skip_next; then
+            skip_next=false
+            continue
+        fi
+
+        if [[ "$arg" == "$option" ]]; then
+            [[ "$has_value" == "y" ]] && skip_next=true
+            continue
+        fi
+
+        filtered_args+=("$arg")
+    done
+}
+
 main() {
-    while getopts ":d:h" opt; do
+    if [ $# -eq 0 ]; then
+        usage; exit 0;
+    fi
+
+    while getopts ":d:q:h" opt; do
         case "$opt" in
             h)
                 usage; exit 0
@@ -44,13 +85,18 @@ main() {
             d)
                 BUILD_DIR="$OPTARG"
             ;;
+            q)
+                OUT_DIR="$OPTARG"
+            ;;
             ?)
                 break
             ;;
         esac
     done
 
-    west build "$@"
+    filter_args "-q" "y" "$@"
+
+    west build "${filtered_args[@]}"
     ret=$?
     if [ $ret -eq 0 ]; then
         output

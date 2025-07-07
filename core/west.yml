@@ -25,3 +25,5 @@ manifest:
           - hal_ti
           - hal_espressif
           - fatfs
+          - open-amp
+          - libmetal
