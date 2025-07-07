@@ -16,14 +16,23 @@ output() {
     fi
     local build_dir=$(realpath "$BUILD_DIR")
     mkdir -p $OUT_DIR
-    cp $build_dir/zephyr/zephyr.{bin,dts,elf,hex,map} $OUT_DIR
+    cp $build_dir/zephyr/zephyr.{bin,dts,elf,map} $OUT_DIR
+    if [ -f "$build_dir/zephyr/zephyr.hex" ]; then
+        cp $build_dir/zephyr/zephyr.hex $OUT_DIR
+    else
+        rm -f $OUT_DIR/zephyr.hex
+    fi
     cp $build_dir/zephyr/.config $OUT_DIR
     cp $build_dir/Kconfig/Kconfig.dts $OUT_DIR
     cp $build_dir/zephyr/include/generated/zephyr/autoconf.h $OUT_DIR
     cp $build_dir/zephyr/include/generated/zephyr/devicetree_generated.h $OUT_DIR
 
     echo "Success, outputing files to $OUT_DIR:"
-    size $OUT_DIR/zephyr.{elf,hex}
+    if [ -f "$OUT_DIR/zephyr.hex" ]; then
+        size $OUT_DIR/zephyr.{elf,hex}
+    else
+        size $OUT_DIR/zephyr.elf
+    fi
 }
 
 main() {
