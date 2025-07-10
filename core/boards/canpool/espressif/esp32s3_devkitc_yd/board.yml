@@ -1,0 +1,6 @@
+board:
+  name: esp32s3_devkitc_yd
+  full_name: YD-ESP32-S3
+  vendor: canpool
+  socs:
+    - name: esp32s3
