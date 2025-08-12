@@ -16,7 +16,7 @@ __pycache__/
 /doc/_build*
 
 # zephyr
-zephyr
-modules
+/zephyr
+/modules
 .west
 .python-version
