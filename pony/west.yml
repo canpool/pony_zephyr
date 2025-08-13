@@ -14,7 +14,7 @@ manifest:
   projects:
     - name: zephyr
       remote: gitee-mirrors
-      revision: v4.2.0-rc1
+      revision: v4.2.0
       import:
         # By using name-allowlist we can clone only the modules that are
         # strictly needed by the application.
