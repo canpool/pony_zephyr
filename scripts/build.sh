@@ -59,7 +59,6 @@ filter_args() {
     local has_value="$2"    # such as: "y" or "n"
     shift 2
 
-    BUILD_ARGS=()
     local arg skip_next=false
 
     for arg in "$@"; do
@@ -98,6 +97,11 @@ main() {
             ;;
         esac
     done
+
+    if [ -z "$BUILD_DIR" ]; then
+        BUILD_DIR="$HOME/zephyrbuild/"
+        BUILD_ARGS+=("-d" "$BUILD_DIR")
+    fi
 
     filter_args "-q" "y" "$@"
 
