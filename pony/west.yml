@@ -28,3 +28,4 @@ manifest:
           - fatfs
           - open-amp
           - libmetal
+          - lvgl
