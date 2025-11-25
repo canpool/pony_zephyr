@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/zephyrproject-rtos
     - name: gitee-mirrors
       url-base: https://gitee.com/mirrors
+    - name: canpool
+      url-base: https://gitee.com/icanpool
 
   projects:
     - name: zephyr
@@ -29,3 +31,7 @@ manifest:
           - open-amp
           - libmetal
           - lvgl
+    - name: pony_thirdparty_quickjs
+      remote: canpool
+      revision: master
+      path: modules/lib/quickjs
