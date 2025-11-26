@@ -35,3 +35,7 @@ manifest:
       remote: canpool
       revision: master
       path: modules/lib/quickjs
+    - name: pony_thirdparty_jerryscript
+      remote: canpool
+      revision: master
+      path: modules/lib/jerryscript
