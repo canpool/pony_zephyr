@@ -39,3 +39,7 @@ manifest:
       remote: canpool
       revision: master
       path: modules/lib/jerryscript
+    - name: lv_advanced
+      remote: canpool
+      revision: master
+      path: modules/lib/gui/lv_advanced
