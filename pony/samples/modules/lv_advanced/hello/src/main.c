@@ -35,6 +35,9 @@ int main(void)
 	printf("lvgl in malloc mode\n");
 #endif
 	while (1) {
+#ifdef CONFIG_BOARD_NATIVE_SIM
+		lv_adv_sim_screen_set_radius(LV_RADIUS_CIRCLE);
+#endif
 		uint32_t sleep_ms = lv_timer_handler();
 
 		k_msleep(MIN(sleep_ms, INT32_MAX));
