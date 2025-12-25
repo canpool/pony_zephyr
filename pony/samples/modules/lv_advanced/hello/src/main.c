@@ -24,6 +24,15 @@ int main(void)
 		LOG_ERR("Device not ready, aborting test");
 		return 0;
 	}
+#ifdef CONFIG_BOARD_NATIVE_SIM
+	lv_display_t *disp = lv_display_get_default();
+	lv_theme_t *theme =
+		lv_theme_default_init(disp, lv_palette_main(LV_PALETTE_BLUE),
+				      lv_palette_main(LV_PALETTE_RED), true, LV_FONT_DEFAULT);
+	lv_disp_set_theme(disp, theme);
+
+	lv_adv_sim_display_set_bg_color(lv_color_white());
+#endif
 
 	lv_adv_example_button_1();
 
