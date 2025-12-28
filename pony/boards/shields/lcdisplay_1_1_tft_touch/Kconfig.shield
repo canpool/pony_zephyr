@@ -1,0 +1,5 @@
+# Copyright (c) 2025 maminjie <canpool@163.com>
+# SPDX-License-Identifier: Apache-2.0
+
+config SHIELD_LCDISPLAY_1_1_TFT_TOUCH
+	def_bool $(shields_list_contains,lcdisplay_1_1_tft_touch)

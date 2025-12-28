@@ -1,0 +1,57 @@
+/*
+ * Copyright (c) 2025 maminjie <canpool@163.com>
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <zephyr/dt-bindings/display/panel.h>
+#include <zephyr/dt-bindings/gpio/arduino-header-r3.h>
+
+/ {
+	chosen {
+		zephyr,display = &gc9a01_lcdisplay_1_1_tft_touch;
+		zephyr,touch = &cst816x_lcdisplay_1_1_tft_touch;
+	};
+
+	lvgl_pointer {
+		compatible = "zephyr,lvgl-pointer-input";
+		input = <&cst816x_lcdisplay_1_1_tft_touch>;
+	};
+
+	lcdisplay_1_1_tft_touch_mipi_dbi {
+		compatible = "zephyr,mipi-dbi-spi";
+		dc-gpios = <&arduino_header ARDUINO_HEADER_R3_D7 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&arduino_header ARDUINO_HEADER_R3_D8 GPIO_ACTIVE_LOW>;
+		spi-dev = <&arduino_spi>;
+		write-only;
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		gc9a01_lcdisplay_1_1_tft_touch: gc9a01@0 {
+			status = "okay";
+			compatible = "galaxycore,gc9x01x";
+			reg = <0>;
+			mipi-max-frequency = <DT_FREQ_M(100)>;
+			pixel-format = <PANEL_PIXEL_FORMAT_RGB_565>;
+			width = <240>;
+			height = <240>;
+			display-inversion;
+		};
+	};
+};
+
+&arduino_spi {
+	status = "okay";
+};
+
+&arduino_i2c {
+	status = "okay";
+
+	cst816x_lcdisplay_1_1_tft_touch: cst816x@15 {
+		status = "okay";
+		compatible = "hynitron,cst816s";
+		reg = <0x15>;
+		irq-gpios = <&arduino_header ARDUINO_HEADER_R3_D2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+		rst-gpios = <&arduino_header ARDUINO_HEADER_R3_D3 GPIO_ACTIVE_LOW>;
+	};
+};

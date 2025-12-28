@@ -1,0 +1,7 @@
+shield:
+  name: lcdisplay_1_1_tft_touch
+  full_name: LC-Display 1.1" TFT Touch Shield
+  vendor: lcdisplay
+  supported_features:
+    - input
+    - display
