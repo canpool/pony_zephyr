@@ -36,6 +36,15 @@
 			width = <240>;
 			height = <240>;
 			display-inversion;
+
+			pwrctrl2 = [2F];
+			pwrctrl3 = [2F];
+			pwrctrl4 = [25];
+			gamma1 = [49 0e 09 09 25 2e];
+			gamma2 = [44 70 73 2F 30 6F];
+			gamma3 = [49 0e 09 09 25 2e];
+			gamma4 = [44 70 73 2F 30 6F];
+			framerate = [24];
 		};
 	};
 };
