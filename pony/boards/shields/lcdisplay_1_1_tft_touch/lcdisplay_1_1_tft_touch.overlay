@@ -31,7 +31,7 @@
 			status = "okay";
 			compatible = "galaxycore,gc9x01x";
 			reg = <0>;
-			mipi-max-frequency = <DT_FREQ_M(100)>;
+			mipi-max-frequency = <DT_FREQ_M(20)>;
 			pixel-format = <PANEL_PIXEL_FORMAT_RGB_565>;
 			width = <240>;
 			height = <240>;
