@@ -3,4 +3,5 @@ shields:
     full_name: ST MB1835B LCD with TOUCH
     vendor: st
     supported_features:
+      - input
       - display

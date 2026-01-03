@@ -16,6 +16,9 @@ choice LV_COLOR_DEPTH
 	default LV_COLOR_DEPTH_16
 endchoice
 
+config INPUT
+	default y
+
 endif # LVGL
 
 endif # SHIELD_ST_MB1835B_LCD_TOUCH

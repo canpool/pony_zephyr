@@ -10,6 +10,12 @@
 / {
 	chosen {
 		zephyr,display = &ltdc;
+		zephyr,touch = &st1633i_touch;
+	};
+
+	lvgl_pointer {
+		compatible = "zephyr,lvgl-pointer-input";
+		input = <&st1633i_touch>;
 	};
 };
 
@@ -114,5 +120,19 @@
 		vsync-len = <1>;
 		vback-porch = <13>;
 		vfront-porch = <50>;
+	};
+};
+
+&i2c5 {
+	pinctrl-0 = <&i2c5_scl_ph5 &i2c5_sda_ph4>;
+	pinctrl-names = "default";
+	clock-frequency = <I2C_BITRATE_FAST>;
+	status = "okay";
+
+	st1633i_touch: st1633i@70 {
+		compatible = "sitronix,st1633i";
+		reg = <0x70>;
+		int-gpios = <&dsi_lcd_qsh_030 4 GPIO_ACTIVE_LOW>;
+		status = "okay";
 	};
 };
