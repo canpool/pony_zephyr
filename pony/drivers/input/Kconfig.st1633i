@@ -1,0 +1,29 @@
+# Copyright (c) 2026 maminjie <canpool@163.com>
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig INPUT_ST1633I
+	bool "ST1633I capacitive touch panel driver"
+	default y
+	depends on DT_HAS_SITRONIX_ST1633I_ENABLED
+	select I2C
+	help
+	  Enable driver for Sitronix capacitive touch panel
+	  controller. This driver should support ST1633I.
+
+if INPUT_ST1633I
+
+config INPUT_ST1633I_INTERRUPT
+	bool "Interrupt support"
+	default y
+	help
+	  Enable interrupt support (requires all instances
+	  of ST1633I have the INT gpio connected).
+
+config INPUT_ST1633I_PERIOD_MS
+	int "Sample period"
+	depends on !INPUT_ST1633I_INTERRUPT
+	default 10
+	help
+	  Sample period in milliseconds when in polling mode.
+
+endif # INPUT_ST1633I

@@ -1,0 +1,10 @@
+# Copyright (c) 2026 maminjie <canpool@163.com>
+# SPDX-License-Identifier: Apache-2.0
+
+if INPUT
+
+# zephyr-keep-sorted-start
+rsource "Kconfig.st1633i"
+# zephyr-keep-sorted-stop
+
+endif # INPUT
