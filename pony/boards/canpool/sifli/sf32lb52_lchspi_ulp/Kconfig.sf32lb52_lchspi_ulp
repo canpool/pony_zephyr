@@ -1,0 +1,5 @@
+# Copyright (c) 2026 maminjie <canpool@163.com>
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_SF32LB52_LCHSPI_ULP
+	select SOC_SF32LB525UC6

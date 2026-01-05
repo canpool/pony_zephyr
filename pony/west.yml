@@ -28,6 +28,7 @@ manifest:
           - hal_ti
           - hal_espressif
           - hal_ambiq
+          - hal_sifli
           - fatfs
           - open-amp
           - libmetal

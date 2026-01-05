@@ -1,0 +1,16 @@
+# Copyright (c) 2025 Core Devices LLC
+# SPDX-License-Identifier: Apache-2.0
+
+identifier: sf32lb52_lchspi_ulp
+name: SF32LB52-LCHSPI-ULP
+type: mcu
+arch: arm
+ram: 512
+flash: 16320
+toolchain:
+  - zephyr
+supported:
+  - uart
+  - gpio
+  - watchdog
+vendor: sifli
