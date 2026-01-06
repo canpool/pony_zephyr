@@ -77,18 +77,11 @@ static int st1633i_process(const struct device *dev)
 		y = (uint16_t)(buffer[XY_COORD_H] & 0x07) << 8 | buffer[Y_COORD_L];
 		data->pressed = true;
 
-		if (!data->pressed_old) {
-			/* Finger pressed */
-			input_report_abs(dev, INPUT_ABS_X, x, false, K_FOREVER);
-			input_report_abs(dev, INPUT_ABS_Y, y, false, K_FOREVER);
-			input_report_key(dev, INPUT_BTN_TOUCH, 1, true, K_FOREVER);
-			LOG_DBG("Finger is touching x = %i y = %i", x, y);
-		} else if (data->pressed_old) {
-			/* Continuous pressed */
-			input_report_abs(dev, INPUT_ABS_X, x, false, K_FOREVER);
-			input_report_abs(dev, INPUT_ABS_Y, y, false, K_FOREVER);
-			LOG_DBG("Finger keeps touching x = %i y = %i", x, y);
-		}
+		/* Whether the finger is pressed or pressed continuously, the key needs to be reported */
+		input_report_abs(dev, INPUT_ABS_X, x, false, K_FOREVER);
+		input_report_abs(dev, INPUT_ABS_Y, y, false, K_FOREVER);
+		input_report_key(dev, INPUT_BTN_TOUCH, 1, true, K_FOREVER);
+		LOG_DBG("Finger is touching x = %i y = %i", x, y);
 	} else {
 		data->pressed = false;
 
