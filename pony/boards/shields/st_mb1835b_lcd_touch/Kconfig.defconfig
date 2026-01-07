@@ -4,6 +4,8 @@
 
 if SHIELD_ST_MB1835B_LCD_TOUCH
 
+orsource "boards/Kconfig.defconfig.*"
+
 if LVGL
 
 config LV_Z_BITS_PER_PIXEL
